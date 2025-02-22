@@ -102,7 +102,7 @@ public class MainCommands {
             int mapsPerPage = 10;
             Seq<Map> maps = getMaps();
             maps.list().stream().skip(page*10L).limit(mapsPerPage + (page * 10L)).forEach(
-                    map -> list.append(map.name() + "[white], by " + map.author())
+                    map -> list.append(map.name() + "[white], by " + map.author() + "\n")
             );
             if (!String.valueOf(list).contains("by")){
                 player.sendMessage("[red]No maps detected!");
@@ -171,7 +171,7 @@ public class MainCommands {
         });
         handler.<Player>register("joinmessage", "<message...>",  "Makes custom join message! @ -> your name. Make sure this message wont break any rule!", (args, player) -> {
             PlayerData data = getPlayerData(player.uuid());
-            if (args[0].length() >= 30){
+            if (args[0].length() >= 45){
                 player.sendMessage("Too much symbols! Limit is 30");
                 return;
             }
