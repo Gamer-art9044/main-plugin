@@ -140,7 +140,7 @@ public class Plugin extends mindustry.mod.Plugin implements ApplicationListener 
                         }
                         votes.getAndAdd(1);
                         votedPlayer.add(event.player);
-                        Call.sendMessage(event.player.plainName() + " Voted: " + votes.get() + "/" + votesRequired);
+                        Call.sendMessage(event.player.plainName() + " проголосовал [green]ЗА. Набрано " + votes.get() + "из " + votesRequired);
                     }
                     case "n" -> {
                         if (votedPlayer.contains(event.player)) {
@@ -149,7 +149,7 @@ public class Plugin extends mindustry.mod.Plugin implements ApplicationListener 
                         }
                         votes.getAndAdd(-1);
                         votedPlayer.add(event.player);
-                        Call.sendMessage(event.player.plainName() + " Voted: " + votes.get() + "/" + votesRequired);
+                        Call.sendMessage(event.player.plainName() + " проголосовал [red]ПРОТИВ. Набрано " + votes.get() + "из " + votesRequired);
                     }
                 }
             }
