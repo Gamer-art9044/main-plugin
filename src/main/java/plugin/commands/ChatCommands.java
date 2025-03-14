@@ -109,7 +109,7 @@ public class ChatCommands {
             player.sendMessage("Could not find that map!");
             return;
         }
-        Call.sendMessage(player.name() + "[#e7e7e7] Started vote for map " + choosedMap.plainName() + "[#e7e7e7] -> " + votes.get() + "/" + votesRequired[0] + ", y/n to vote");
+        Call.sendMessage(player.name() + "[#e7e7e7] начал голосование за карту " + choosedMap.plainName() + "[#e7e7e7]. " + votes.get() + "голосов из " + votesRequired[0] + ". y или n чтобы проголосовать");
         isVoting = true;
         timer.schedule((new TimerTask() {
             @Override
