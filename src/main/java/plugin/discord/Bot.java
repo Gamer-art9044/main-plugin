@@ -92,8 +92,7 @@ public class Bot {
         }, 0.2f));
         Events.on(EventType.PlayerLeave.class, event ->
                 Timer.schedule(() -> {
-                    PlayerData user = getPlayerData(event.player.uuid());
-            channel.sendMessage("`" + event.player.plainName()  + " ("+ user.id + ")" +" left the server!" + "`");
+                    PlayerData user = getPlayerData(event.player.uuid());           channel.sendMessage(event.player.plainName().replace("`","") + ": `" + event.message.replace("`", "") + "`");
         }, 0.2f));
     }
      // creating listener once message is created
