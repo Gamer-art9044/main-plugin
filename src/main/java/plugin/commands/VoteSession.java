@@ -72,7 +72,7 @@ public class VoteSession {
         plugin.database.wrappers.PlayerData data = new plugin.database.wrappers.PlayerData(player);
 
         Call.sendMessage(Strings.format("[lightgray]@\f[lightgray] has voted @ kicking[orange] @\f[lightgray].[accent] (@/@)\n[lightgray]Type[orange] /vote <y/n>[] to agree.",
-                player.coloredName()+" [grey]["+data.getId()+][white], h, target.coloredName(), currentVotes, requiredVotes));
+                player.coloredName()+" [grey]["+data.getId()+"][white]", h, target.coloredName(), currentVotes, requiredVotes));
         checkPassed();
     }
 
