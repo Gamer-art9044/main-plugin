@@ -49,42 +49,42 @@ public class Utilities {
     public static Seq<Map> getMaps(){
         return Vars.maps.customMaps().copy();
     }
-    public static boolean checkProxy(String insertedText) {
-        try {
-            String urlString = "http://ip-api.com/json/" + insertedText + "?fields=proxy,hosting";
-            URL url = new URL(urlString);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
 
-            int responseCode = con.getResponseCode();
+public static boolean checkProxy(String insertedText) {
+    try {
+        String urlString = "http://ip-api.com/json/" + insertedText + "?fields=proxy,hosting";
+        URL url = new URL(urlString);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
 
-            if (responseCode == HttpURLConnection.HTTP_OK) { // 200
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(con.getInputStream()));
-                String inputLine;
-                StringBuilder response = new StringBuilder();
+        int responseCode = con.getResponseCode();
 
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
+        if (responseCode == HttpURLConnection.HTTP_OK) { // 200
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
 
-                JSONObject jsonResponse = new JSONObject(response.toString());
-                boolean proxy = jsonResponse.getBoolean("proxy");
-                boolean hosting = jsonResponse.getBoolean("hosting");
-
-                if (proxy || hosting) {
-                    return true
-                } else {
-                    return false
-                }
-                
-            } else {
-                return false
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            in.close();
+
+            JSONObject jsonResponse = new JSONObject(response.toString());
+            boolean proxy = jsonResponse.getBoolean("proxy");
+            boolean hosting = jsonResponse.getBoolean("hosting");
+
+            return (proxy || hosting);
+        } else {
+            return false;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false; // <-- Add this return
     }
+}
+
+    
     public static <T> String stringify(ArrayList<T> arr, Func<T, String> stringer) {
         if (arr == null || arr.isEmpty()) return "";
         StringBuilder out = new StringBuilder();
